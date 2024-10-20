@@ -1,5 +1,7 @@
 *.js
 !jest.config.js
+!assets/*/*.js
+!assets/*/util/*.js
 *.d.ts
 node_modules
 

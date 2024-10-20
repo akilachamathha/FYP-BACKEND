@@ -2,17 +2,7 @@
   "app": "npx ts-node --prefer-ts-exts bin/fyp-backend.ts",
   "watch": {
     "include": ["**"],
-    "exclude": [
-      "README.md",
-      "cdk*.json",
-      "**/*.d.ts",
-      "**/*.js",
-      "tsconfig.json",
-      "package*.json",
-      "yarn.lock",
-      "node_modules",
-      "test"
-    ]
+    "exclude": ["README.md", "cdk*.json", "**/*.d.ts", "**/*.js", "tsconfig.json", "package*.json", "yarn.lock", "node_modules", "test"]
   },
   "context": {
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
@@ -64,17 +54,17 @@
     "defaultEnv": "dev",
     "dev": {
       "region": "ap-south-1",
-      "envPrefix": "Dev_FYP_",
+      "envPrefix": "Dev-FYP-",
       "appName": "UoM G27 FYP"
     },
     "test": {
       "region": "ap-south-1",
-      "envPrefix": "Test_FYP_",
+      "envPrefix": "Test-FYP-",
       "appName": "UoM G27 FYP"
     },
     "prod": {
       "region": "ap-south-1",
-      "envPrefix": "Prod_FYP_",
+      "envPrefix": "Prod-FYP-",
       "appName": "UoM G27 FYP"
     },
     "awsAccountId": "686255942291"
