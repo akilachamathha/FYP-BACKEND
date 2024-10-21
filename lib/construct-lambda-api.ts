@@ -31,6 +31,26 @@ export class LambdaApi extends Construct {
       apiEndpoint: apiEndpoint,
     });
 
+    const LdrDataStore = new LambdaFunction(this, 'LdrDataStore', {
+      httpMethod: 'POST',
+      httpRelativePath: 'store-ldr-data',
+      apiEndpoint: apiEndpoint,
+      environment: {
+        LDR_DATA_TABLE_NAME: props.dynamoLDRdataTable.tableName,
+      },
+    });
+    props.dynamoLDRdataTable.table.grantReadWriteData(LdrDataStore.lambdaFunction);
+
+    const getLdrData = new LambdaFunction(this, 'getLdrData', {
+      httpMethod: 'GET',
+      httpRelativePath: 'get-ldr-data',
+      apiEndpoint: apiEndpoint,
+      environment: {
+        LDR_DATA_TABLE_NAME: props.dynamoLDRdataTable.tableName,
+      },
+    });
+    props.dynamoLDRdataTable.table.grantReadData(getLdrData.lambdaFunction);
+
     this.apiEndpoint = apiEndpoint;
   }
 }

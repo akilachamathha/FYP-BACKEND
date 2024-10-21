@@ -14,9 +14,9 @@ export class FypBackendStack extends cdk.Stack {
     const coginitoUserPool = new CognitoUserPool(this, buildConfig);
 
     // create database schema
-    const dynamoLDRdataTable = new DynamoDBTable(this, 'LDRdataTable', buildConfig, {
-      partitionKey: 'date',
-      sortKey: 'time',
+    const dynamoLDRdataTable = new DynamoDBTable(this, 'LdrDataTable', buildConfig, {
+      partitionKey: 'location',
+      sortKey: 'dateTime',
     });
 
     // create the api end point
