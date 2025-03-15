@@ -7,7 +7,7 @@ import { DynamoDBTable } from './construct-dynamodb-table';
 
 export interface LambdaApiProps {
   readonly userPool: CognitoUserPool;
-  readonly dynamoLDRdataTable: DynamoDBTable;
+  readonly dynamoSensorDataTable: DynamoDBTable;
 }
 
 export class LambdaApi extends Construct {
@@ -31,25 +31,15 @@ export class LambdaApi extends Construct {
       apiEndpoint: apiEndpoint,
     });
 
-    const LdrDataStore = new LambdaFunction(this, 'LdrDataStore', {
+    const sensorDataStore = new LambdaFunction(this, 'sensorDataStore', {
       httpMethod: 'POST',
-      httpRelativePath: 'store-ldr-data',
+      httpRelativePath: 'sensor-data-store',
       apiEndpoint: apiEndpoint,
       environment: {
-        LDR_DATA_TABLE_NAME: props.dynamoLDRdataTable.tableName,
+        SENSOR_DATA_TABLE_NAME: props.dynamoSensorDataTable.tableName,
       },
     });
-    props.dynamoLDRdataTable.table.grantReadWriteData(LdrDataStore.lambdaFunction);
-
-    const getLdrData = new LambdaFunction(this, 'getLdrData', {
-      httpMethod: 'GET',
-      httpRelativePath: 'get-ldr-data',
-      apiEndpoint: apiEndpoint,
-      environment: {
-        LDR_DATA_TABLE_NAME: props.dynamoLDRdataTable.tableName,
-      },
-    });
-    props.dynamoLDRdataTable.table.grantReadData(getLdrData.lambdaFunction);
+    props.dynamoSensorDataTable.table.grantReadWriteData(sensorDataStore.lambdaFunction);
 
     this.apiEndpoint = apiEndpoint;
   }
