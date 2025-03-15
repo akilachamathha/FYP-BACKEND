@@ -25,8 +25,8 @@ async function storeSensorData(sensorData) {
       espDateTime: sensorData.dateTime,
       accData: sensorData.accData,
       rtcData: sensorData.rtcData,
-      current_mA: sensorData.current,
-      voltage_V: sensorData.voltage,
+      current_mA: sensorData?.current,
+      voltage_V: sensorData?.voltage,
       location: {
         latitude: sensorData.latitude,
         longitude: sensorData.longitude,
