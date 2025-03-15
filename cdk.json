@@ -53,17 +53,17 @@
     "@aws-cdk/aws-ec2:ebsDefaultGp3Volume": true,
     "defaultEnv": "dev",
     "dev": {
-      "region": "ap-southeast-1",
+      "region": "us-east-1",
       "envPrefix": "Dev-FYP-",
       "appName": "UoM G27 FYP"
     },
     "test": {
-      "region": "ap-southeast-1",
+      "region": "us-east-1",
       "envPrefix": "Test-FYP-",
       "appName": "UoM G27 FYP"
     },
     "prod": {
-      "region": "ap-southeast-1",
+      "region": "us-east-1",
       "envPrefix": "Prod-FYP-",
       "appName": "UoM G27 FYP"
     },
