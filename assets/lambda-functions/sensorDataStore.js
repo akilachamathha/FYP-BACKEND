@@ -1,6 +1,7 @@
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
 const { DynamoDBDocument } = require('@aws-sdk/lib-dynamodb');
 const { handleSuccess, handleError } = require('./util/ResponseUtil');
+const { throwExposableError } = require('./util/ResponseUtil');
 const ddbClient = new DynamoDBClient({});
 const docClient = DynamoDBDocument.from(ddbClient);
 
@@ -25,6 +26,9 @@ async function storeSensorData(sensorData) {
       espDateTime: sensorData.dateTime,
       accData: sensorData.accData,
       rtcData: sensorData.rtcData,
+      gyro_x: sensorData.gyro_x,
+      gyro_y: sensorData.gyro_y,
+      gyro_z: sensorData.gyro_z,
       current_mA: sensorData?.current,
       voltage_V: sensorData?.voltage,
       location: {
