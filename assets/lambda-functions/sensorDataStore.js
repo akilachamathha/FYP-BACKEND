@@ -24,8 +24,10 @@ async function storeSensorData(sensorData) {
     const param = {
       buoyId: sensorData.buoyId,
       espDateTime: sensorData.dateTime,
-      accData: sensorData.accData,
       rtcData: sensorData.rtcData,
+      acc_x: sensorData.acc_x,
+      acc_y: sensorData.acc_y,
+      acc_z: sensorData.acc_z,
       gyro_x: sensorData.gyro_x,
       gyro_y: sensorData.gyro_y,
       gyro_z: sensorData.gyro_z,
@@ -74,7 +76,11 @@ const validateInputs = (event) => {
 
   if (!input.dateTime) throwExposableError('Input parameter dateTime is empty');
 
-  if (!input.accData) throwExposableError('Input parameter accData is empty');
+  if (!input.acc_x) throwExposableError('Input parameter acc_x is empty');
+
+  if (!input.acc_y) throwExposableError('Input parameter acc_y is empty');
+
+  if (!input.acc_z) throwExposableError('Input parameter acc_z is empty');
 
   return input;
 };
