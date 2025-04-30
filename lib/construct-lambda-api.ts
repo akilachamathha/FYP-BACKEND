@@ -41,6 +41,16 @@ export class LambdaApi extends Construct {
     });
     props.dynamoSensorDataTable.table.grantReadWriteData(sensorDataStore.lambdaFunction);
 
+    const sensorDataGet = new LambdaFunction(this, 'sensorDataGet', {
+      httpMethod: 'POST',
+      httpRelativePath: 'sensor-data-get',
+      apiEndpoint: apiEndpoint,
+      environment: {
+        SENSOR_DATA_TABLE_NAME: props.dynamoSensorDataTable.tableName,
+      },
+    });
+    props.dynamoSensorDataTable.table.grantReadData(sensorDataGet.lambdaFunction);
+
     this.apiEndpoint = apiEndpoint;
   }
 }
